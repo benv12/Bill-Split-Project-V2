@@ -28,6 +28,9 @@ interface UserDao {
     @Query("SELECT pass_word FROM user_table")
     fun getPassword(): Array<String>
 
+    @Query("SELECT zelle_name FROM user_table")
+    fun getZelle(): Array<String>
+
     @Query("SELECT * FROM user_table WHERE user_name = :username")
     suspend fun getUserByUsername(username: String): User?
 

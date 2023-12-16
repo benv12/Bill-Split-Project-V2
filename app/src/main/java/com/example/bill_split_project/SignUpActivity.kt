@@ -63,10 +63,11 @@ class SignUpActivity : AppCompatActivity() {
 
         val username = binding.etUsername1.text.toString()
         val password = binding.etPassword1.text.toString()
+        val zelle = binding.etZelle.text.toString()
 
-        if(username.isNotEmpty()&&password.isNotEmpty()){
+        if(username.isNotEmpty()&&password.isNotEmpty()&&zelle.isNotEmpty()){
                 val user = User(
-                    null,username,password
+                    null,username,password,zelle
                 )
 
                 GlobalScope.launch(Dispatchers.IO){
@@ -82,7 +83,7 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun sendData(){
-        username = binding.etUsername1.text.toString()
+        username = binding.etUsername1.text.toString()+"#"+binding.etZelle.text.toString()
 
         val intent = Intent(this,HomeActivity::class.java).also{
             it.putExtra("passUsername", username)

@@ -24,10 +24,6 @@ class HomeActivity : AppCompatActivity() {
                     replaceFragment(HomeFragment())
 
                 }
-                R.id.add_nav ->{
-                    replaceFragment(AddFragment())
-
-                }
                 R.id.invite_nav -> {
 
                     replaceFragment(InviteFragment())

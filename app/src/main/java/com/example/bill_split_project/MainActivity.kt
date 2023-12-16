@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun sendData(){
-        username = binding.newUsername.text.toString()
+        username = binding.newUsername.text.toString()+"#"+binding.etZelleMain.text.toString()
 
             val intent = Intent(this,HomeActivity::class.java).also{
                 it.putExtra("passUsername", username)
@@ -59,41 +59,19 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
-    private fun mainActivity(){
-
-        val username = binding.newUsername.text.toString()
-        val password = binding.etPassword.text.toString()
-
-        if(username.isNotEmpty()&&password.isNotEmpty()){
-
-            val user = User(
-                null,username,password
-            )
-
-            GlobalScope.launch(Dispatchers.IO){
-
-                appDb.userDao().insert(user)
-
-            }
-            sendData()
-
-            binding.newUsername.text.clear()
-            binding.etPassword.text.clear()
-
-        }
-    }
-
     private fun logIn(){
 
         GlobalScope.launch{
             val usernameArray: Array<String> = appDb.userDao().getUsername()
             val passwordArray: Array<String> = appDb.userDao().getPassword()
+            val zelleUsername: Array<String> = appDb.userDao().getZelle()
             if(usernameArray!=null&&passwordArray!=null){
                 val username1 = binding.newUsername.text.toString()
                 val password = binding.etPassword.text.toString()
+                val zelle = binding.etZelleMain.text.toString()
 
-                for(i in 0..usernameArray.size-1){
-                    if(usernameArray[i].equals(username1)&&passwordArray[i].equals(password)) {
+                for(i in usernameArray.indices){
+                    if(usernameArray[i]==username1&&passwordArray[i]==password&&zelleUsername[i]==zelle) {
                         sendData()
                     }
                 }

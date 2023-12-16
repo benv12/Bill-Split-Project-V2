@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 
-@Database(entities = [User :: class, FriendRequest::class], version = 5)
+@Database(entities = [User :: class, FriendRequest::class], version = 6)
 abstract class AppDatabase : RoomDatabase(){
 
     abstract fun userDao() : UserDao
@@ -35,5 +35,3 @@ abstract class AppDatabase : RoomDatabase(){
     }
 
 }
-
-

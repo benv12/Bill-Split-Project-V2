@@ -56,7 +56,12 @@ class InviteFragment : Fragment() {
     }
     private fun listView(){
         GlobalScope.launch {
-            val temp: Array<String> = appDb.userDao().getUsername()
+            val username: Array<String> = appDb.userDao().getUsername()
+            val zelle: Array<String> = appDb.userDao().getZelle()
+            val temp = Array(username.size){""}
+            for(i in username.indices){
+                temp[i] = username[i] + "#" + zelle[i]
+            }
             if(temp!=null){
                 val user = Array(temp.size){""}
                 for(i in 0..user.size-1){
@@ -70,7 +75,7 @@ class InviteFragment : Fragment() {
                 val userAdapter: ArrayAdapter<String> = ArrayAdapter(
                     requireActivity(),
                     android.R.layout.simple_list_item_multiple_choice,
-                    user
+                    temp
                 )
 
                 binding.myListView.adapter = userAdapter

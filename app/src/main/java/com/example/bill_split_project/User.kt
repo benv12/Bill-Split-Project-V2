@@ -11,6 +11,7 @@ data class User(
     @PrimaryKey(autoGenerate = true)val id: Int?,
     @ColumnInfo(name = "user_name")val userName: String?,
     @ColumnInfo(name = "pass_word")val passWord: String?,
+    @ColumnInfo(name = "zelle_name")val zelleName: String?
 
 )
 
